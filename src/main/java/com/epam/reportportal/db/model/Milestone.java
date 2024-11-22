@@ -1,14 +1,14 @@
 package com.epam.reportportal.db.model;
 
+import java.util.List;
+
 public class Milestone {
 
     private Long id;
     private String name;
     private String type;
-    private String productVersion; //TODO reference to Version
+    private Version productVersion;
     private Long startDate;
     private Long endDate;
-
-    //TODO reference to Test Cases ? Suite ?
-
+    private List<TestCase> testCases;
 }

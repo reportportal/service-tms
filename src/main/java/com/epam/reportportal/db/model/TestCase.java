@@ -10,8 +10,8 @@ public class TestCase {
     private String description;
     private Set<Tag> tags;
     private List<TestCaseVersion> versions;
-    private Long testPlanId;
     private DataSet dataSet;
-
+    private Suite suite; // nullable
+    private List<TestPlan> testPlans; // many-to-many
 
 }

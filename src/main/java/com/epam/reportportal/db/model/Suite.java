@@ -2,9 +2,11 @@ package com.epam.reportportal.db.model;
 
 import java.util.List;
 
-public class DataSet {
+public class Suite {
+    
     private Long id;
     private String name;
-    private List<DataSetColumn> columns;
+    private String description;
+    private List<TestCase> testCases;
     
 }

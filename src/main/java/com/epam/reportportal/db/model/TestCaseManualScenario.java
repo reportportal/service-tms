@@ -7,6 +7,6 @@ public class TestCaseManualScenario {
     private Integer executionEstimationTime;
     private String linkToRequirements;
     private String preconditions;
-    private List<Attribute> attributes;
+    private List<TestCaseAttribute> attributes;
     private List<TestCaseStep> steps;
 }

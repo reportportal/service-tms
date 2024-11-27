@@ -7,8 +7,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,36 +18,34 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
-@Table(name = "test_plan", schema = "public")
+@Table(name = "manual_scenario", schema = "public")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TestPlan {
+public class ManualScenario {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     
-    @Column(name = "name")
-    private String name;
+    @Column(name = "execution_estimation_time")
+    private Integer executionEstimationTime;
     
-    @Column(name = "description")
-    private String description;
+    @Column(name = "link_to_requirements")
+    private String linkToRequirements;
     
-    @ManyToOne
-    @JoinColumn(name = "environment_id", nullable = false)
-    private Environment environment;
+    @Column(name = "preconditions")
+    private String preconditions;
     
-    @ManyToOne
-    @JoinColumn(name = "product_version_id", nullable = false)
-    private ProductVersion productVersion;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "test_case_version_id")
+    private TestCaseVersion testCaseVersion;
     
-    @OneToMany(mappedBy = "testPlan")
-    private Set<TestPlanAttribute> attributes;
+    @OneToMany(mappedBy = "manualScenario")
+    private Set<ManualScenarioAttribute> attributes;
     
-    @OneToMany(mappedBy = "testPlan", fetch = FetchType.LAZY)
-    private Set<Milestone> milestones;
-    
+    @OneToMany(mappedBy = "manualScenario")
+    private Set<Step> steps;
 }

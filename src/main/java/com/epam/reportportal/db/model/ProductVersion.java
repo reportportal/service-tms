@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,23 +13,31 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
-@Table(name = "attribute", schema = "public")
+@Table(name = "product_version", schema = "public")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Attribute implements Serializable {
+public class ProductVersion implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     
-    // TODO: Do we actually need to mark this field unique=true and nullable=false ?
-    @Column(name = "key", nullable = false, unique = true)
-    private String key;
+    @Column(name = "version")
+    private String version;
     
-    //TODO: override equals and hashCode methods
+    @Column(name = "documentation")
+    private String documentation;
+    
+    @OneToMany(mappedBy = "productVersion")
+    private Set<TestPlan> testPlans;
+    
+    @OneToMany(mappedBy = "productVersion")
+    private Set<Milestone> milestones;
+    //TODO test changes
 }

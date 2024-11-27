@@ -15,20 +15,20 @@ import lombok.Setter;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "test_plan_attribute")
+@Table(name = "manual_scenario_attribute")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TestPlanAttribute implements Serializable {
+public class ManualScenarioAttribute implements Serializable {
     
     @EmbeddedId
-    private TestPlanAttributeId id;
+    private ManualScenarioAttributeId id;
     
     @ManyToOne
-    @MapsId(value = "testPlanId")
-    @JoinColumn(name = "test_plan_id")
-    private TestPlan testPlan;
+    @MapsId(value = "manualScenarioId")
+    @JoinColumn(name = "manual_scenario_id")
+    private ManualScenario manualScenario;
     
     @ManyToOne
     @MapsId(value = "attributeId")
@@ -37,4 +37,6 @@ public class TestPlanAttribute implements Serializable {
     
     @Column(name = "value")
     private String value;
+    
+    //TODO: override equals and hashCode methods
 }

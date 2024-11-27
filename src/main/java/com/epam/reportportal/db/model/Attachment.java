@@ -2,6 +2,7 @@ package com.epam.reportportal.db.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -13,38 +14,39 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.io.Serializable;
 
 @Entity
-@Table(name = "environment", schema = "public")
+@Table(name = "attachment", schema = "public")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Milestone {
+public class Attachment implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
     
-    @Column(name = "name")
-    private String name;
+    @Column(name = "file_name")
+    private String fileName;
     
-    @Column(name = "type")
-    private String type;
+    @Column(name = "file_type")
+    private String fileType;
     
-    @Column(name = "start_date", columnDefinition = "TIMESTAMP")
-    private LocalDateTime startDate;
+    @Column(name = "file_size")
+    private long fileSize;
     
-    @Column(name = "end_date", columnDefinition = "TIMESTAMP")
-    private LocalDateTime endDate;
+    @Column(name = "path_to_file")
+    private String pathToFile;
     
-    @ManyToOne
-    @JoinColumn(name = "product_version_id", nullable = false)
-    private ProductVersion productVersion;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "step_id")
+    private Step step;
     
-    @ManyToOne
-    @JoinColumn(name = "test_plan_id")
-    private TestPlan testPlan;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "environment_id")
+    private Environment environment;
+    
 }

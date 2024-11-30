@@ -23,7 +23,6 @@ import java.io.Serializable;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class TestCaseVersion implements Serializable {
     
     @Id
@@ -46,6 +45,18 @@ public class TestCaseVersion implements Serializable {
     
     @OneToOne(mappedBy = "testCaseVersion", fetch = FetchType.LAZY)
     private ManualScenario manualScenario;
+    
+    public TestCaseVersion(final Long id,
+                           final String name,
+                           final boolean isDefault,
+                           final boolean isDraft,
+                           final ManualScenario manualScenario) {
+        this.id = id;
+        this.name = name;
+        this.isDefault = isDefault;
+        this.isDraft = isDraft;
+        this.manualScenario = manualScenario;
+    }
     
     //TODO: override equals and hashCode methods
     

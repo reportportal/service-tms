@@ -1,5 +1,6 @@
 package com.epam.reportportal.db.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -40,7 +41,7 @@ public class TestCase implements Serializable {
     @OneToMany(mappedBy = "testCase")
     private Set<TestCaseAttribute> tags;
     
-    @OneToMany(mappedBy = "testCase")
+    @OneToMany(mappedBy = "testCase", cascade = CascadeType.PERSIST)
     private Set<TestCaseVersion> versions;
     
     @ManyToOne(fetch = FetchType.LAZY)
@@ -53,4 +54,8 @@ public class TestCase implements Serializable {
     //    TODO:many-to-many
     //    private Set<TestPlan> testPlans;
     
+    public void addTestCaseVersion(final TestCaseVersion testCaseVersion) {
+        versions.add(testCaseVersion);
+        testCaseVersion.setTestCase(this);
+    }
 }

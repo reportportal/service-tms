@@ -23,7 +23,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class TestSuite implements Serializable {
     
     @Id
@@ -46,4 +45,10 @@ public class TestSuite implements Serializable {
     
     @OneToMany(mappedBy = "parent")
     private List<TestSuite> subTestSuites;
+    
+    public TestSuite(final Long id, final String name, final String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
 }

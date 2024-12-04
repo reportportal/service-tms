@@ -1,11 +1,11 @@
 package com.epam.reportportal.service;
 
-import com.epam.reportportal.dto.TestCaseInputDto;
-import com.epam.reportportal.dto.TestCaseOutputDto;
+import com.epam.reportportal.dto.TestCaseRQ;
+import com.epam.reportportal.dto.TestCaseRS;
 
 public interface TestCaseService {
     
-    TestCaseOutputDto createTestCase(TestCaseInputDto inputDto);
-    TestCaseOutputDto updateTestCase(long testCaseId, TestCaseInputDto inputDto);
-    TestCaseOutputDto getTestCaseById(long id);
+    TestCaseRS createTestCase(TestCaseRQ inputDto);
+    TestCaseRS updateTestCase(long testCaseId, TestCaseRQ inputDto);
+    TestCaseRS getTestCaseById(long id);
 }

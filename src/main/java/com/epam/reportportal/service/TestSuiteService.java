@@ -1,11 +1,11 @@
 package com.epam.reportportal.service;
 
-import com.epam.reportportal.dto.TestSuiteInputDto;
-import com.epam.reportportal.dto.TestSuiteOutputDto;
+import com.epam.reportportal.dto.TestSuiteRQ;
+import com.epam.reportportal.dto.TestSuiteRS;
 
 public interface TestSuiteService {
     
-    TestSuiteOutputDto createTestSuite(TestSuiteInputDto inputDto);
-    TestSuiteOutputDto updateTestSuite(long testSuiteId, TestSuiteInputDto inputDto);
-    TestSuiteOutputDto getTestSuiteById(long id);
+    TestSuiteRS createTestSuite(TestSuiteRQ inputDto);
+    TestSuiteRS updateTestSuite(long testSuiteId, TestSuiteRQ inputDto);
+    TestSuiteRS getTestSuiteById(long id);
 }

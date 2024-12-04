@@ -1,5 +1,5 @@
 package com.epam.reportportal.dto;
 
-public record TestCaseDetailsInputDto() {
+public record Error() {
     
 }

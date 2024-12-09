@@ -1,12 +1,6 @@
 package com.epam.reportportal.db.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EmbeddedId;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,19 +15,19 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ManualScenarioAttribute implements Serializable {
-    
-    @EmbeddedId
-    private ManualScenarioAttributeId id;
-    
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Long id;
+
     @ManyToOne
-    @MapsId(value = "manualScenarioId")
     @JoinColumn(name = "manual_scenario_id")
     private ManualScenario manualScenario;
-    
-    @ManyToOne
-    @MapsId(value = "attributeId")
-    @JoinColumn(name = "attribute_id")
-    private Attribute attribute;
+
+    // TODO: Do we need this field for test case?
+    @Column(name = "key")
+    private String key;
     
     @Column(name = "value")
     private String value;

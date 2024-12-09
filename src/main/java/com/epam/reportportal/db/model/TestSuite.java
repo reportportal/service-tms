@@ -35,7 +35,11 @@ public class TestSuite implements Serializable {
     
     @Column(name = "description")
     private String description;
-    
+
+    //TODO to become foreign key
+    @Column(name = "project_id")
+    private Long projectId;
+
     @OneToMany(mappedBy = "testSuite")
     private List<TestCase> testCases;
     
@@ -46,8 +50,9 @@ public class TestSuite implements Serializable {
     @OneToMany(mappedBy = "parent")
     private List<TestSuite> subTestSuites;
     
-    public TestSuite(final Long id, final String name, final String description) {
+    public TestSuite(final Long projectId, final Long id, final String name, final String description) {
         this.id = id;
+        this.projectId = projectId;
         this.name = name;
         this.description = description;
     }

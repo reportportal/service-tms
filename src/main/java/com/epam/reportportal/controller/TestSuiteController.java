@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/project/{projectId}/tms/testsuite")
 public class TestSuiteController {
@@ -27,19 +29,23 @@ public class TestSuiteController {
     @PostMapping
     TestSuiteRS createTestSuite(@PathVariable("projectId") final long projectId,
                                 @RequestBody final TestSuiteRQ inputDto) {
-        return testSuiteService.createTestSuite(inputDto);
+        return testSuiteService.createTestSuite(projectId,inputDto);
     }
     
     @PutMapping("/{testSuiteId}")
     TestSuiteRS updateTestSuite(@PathVariable("projectId") final long projectId,
                                       @PathVariable("testSuiteId") final long testSuiteId,
                                       @RequestBody final TestSuiteRQ inputDto) {
-        return testSuiteService.updateTestSuite(testSuiteId, inputDto);
+        return testSuiteService.updateTestSuite(projectId, testSuiteId, inputDto);
     }
     
     @GetMapping("/{testSuiteId}")
     TestSuiteRS getTestSuiteById(@PathVariable("projectId") final long projectId,
                                        @PathVariable("testSuiteId") final long testSuiteId) {
         return testSuiteService.getTestSuiteById(testSuiteId);
+    }
+    @GetMapping("/")
+    List<TestSuiteRS> getTestSuiteByProjectId(@PathVariable("projectId") final long projectId) {
+        return testSuiteService.getTestSuiteByProjectID(projectId);
     }
 }

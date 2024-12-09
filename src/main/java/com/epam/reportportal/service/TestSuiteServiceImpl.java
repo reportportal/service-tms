@@ -10,6 +10,9 @@ import com.epam.reportportal.mapper.TestSuiteMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class TestSuiteServiceImpl implements TestSuiteService {
     
@@ -25,15 +28,18 @@ public class TestSuiteServiceImpl implements TestSuiteService {
     }
     
     @Override
-    public TestSuiteRS createTestSuite(final TestSuiteRQ inputDto) {
-        return testSuiteMapper.convert(testSuiteRepository.save(new TestSuite(null, inputDto.name(), inputDto.description())));
+    public TestSuiteRS createTestSuite(final long projectId, final TestSuiteRQ inputDto) {
+        return testSuiteMapper.convert(testSuiteRepository.save(new TestSuite(null,projectId, inputDto.name(), inputDto.description())));
     }
     
     @Override
-    public TestSuiteRS updateTestSuite(final long testSuiteId, final TestSuiteRQ inputDto) {
+    public TestSuiteRS updateTestSuite(final long projectId,final long testSuiteId, final TestSuiteRQ inputDto) {
+        // TODO validate project value
+
         final var testSuite = testSuiteRepository.findById(testSuiteId)
                                                  .orElseThrow(NotFoundException.supplier(TEST_SUITE_NOT_FOUND_BY_ID, testSuiteId));
         
+        testSuite.setProjectId(projectId);
         testSuite.setName(inputDto.name());
         testSuite.setDescription(inputDto.description());
         
@@ -45,5 +51,11 @@ public class TestSuiteServiceImpl implements TestSuiteService {
         return testSuiteRepository.findById(id)
                                   .map(testSuiteMapper::convert)
                                   .orElseThrow(NotFoundException.supplier(TEST_SUITE_NOT_FOUND_BY_ID, id));
+    }
+    @Override
+    public List<TestSuiteRS> getTestSuiteByProjectID(final long projectId) {
+        return testSuiteRepository.findAllByProjectId(projectId)
+                .stream().map(testSuiteMapper::convert)
+                .toList();
     }
 }

@@ -19,7 +19,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "test_suite", schema = "public")
+@Table(name = "tms_test_suite", schema = "public")
 @Getter
 @Setter
 @NoArgsConstructor

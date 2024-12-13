@@ -19,7 +19,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Table(name = "step", schema = "public")
+@Table(name = "tms_step", schema = "public")
 @Getter
 @Setter
 @NoArgsConstructor

@@ -18,7 +18,7 @@ import lombok.Setter;
 import java.util.Set;
 
 @Entity
-@Table(name = "manual_scenario", schema = "public")
+@Table(name = "tms_manual_scenario", schema = "public")
 @Getter
 @Setter
 @NoArgsConstructor

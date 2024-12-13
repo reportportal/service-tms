@@ -19,7 +19,7 @@ import lombok.Setter;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "test_case_version", schema = "public")
+@Table(name = "tms_test_case_version", schema = "public")
 @Getter
 @Setter
 @NoArgsConstructor

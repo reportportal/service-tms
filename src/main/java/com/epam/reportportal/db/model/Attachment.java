@@ -17,7 +17,7 @@ import lombok.Setter;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "attachment", schema = "public")
+@Table(name = "tms_attachment", schema = "public")
 @Getter
 @Setter
 @NoArgsConstructor

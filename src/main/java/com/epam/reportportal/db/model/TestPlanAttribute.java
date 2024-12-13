@@ -1,6 +1,12 @@
 package com.epam.reportportal.db.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,25 +15,25 @@ import lombok.Setter;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "test_plan_attribute")
+@Table(name = "tms_test_plan_attribute")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class TestPlanAttribute implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+    
+    @EmbeddedId
+    private TestPlanAttributeId id;
     
     @ManyToOne
+    @MapsId(value = "testPlanId")
     @JoinColumn(name = "test_plan_id")
     private TestPlan testPlan;
-
-    // TODO: Do we actually need to mark this field unique=true and nullable=false ?
-    @Column(name = "key", nullable = false, unique = true)
-    private String key;
+    
+    @ManyToOne
+    @MapsId(value = "attributeId")
+    @JoinColumn(name = "attribute_id")
+    private Attribute attribute;
     
     @Column(name = "value")
     private String value;

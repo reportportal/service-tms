@@ -16,7 +16,7 @@ import lombok.Setter;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "environment", schema = "public")
+@Table(name = "tms_environment", schema = "public")
 @Getter
 @Setter
 @NoArgsConstructor

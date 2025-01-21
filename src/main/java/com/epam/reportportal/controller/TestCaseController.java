@@ -3,11 +3,13 @@ package com.epam.reportportal.controller;
 import com.epam.reportportal.dto.TestCaseRQ;
 import com.epam.reportportal.dto.TestCaseRS;
 import com.epam.reportportal.service.TestCaseService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/project/{projectId}/tms/testcase")
+@Tag(name = "Test Case", description = "Test Case API collection")
 public class TestCaseController {
 
     private final TestCaseService testCaseService;

@@ -45,8 +45,8 @@ public class TestCase implements Serializable {
     private Set<TestCaseVersion> versions;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "test_suite_id", nullable = false)
-    private TestSuite testSuite;
+    @JoinColumn(name = "test_folder_id", nullable = false)
+    private TestFolder testFolder;
     
     //    TODO:many-to-one
     //    private DataSet dataSet;

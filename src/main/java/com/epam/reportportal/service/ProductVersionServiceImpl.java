@@ -2,23 +2,15 @@ package com.epam.reportportal.service;
 
 import com.epam.reportportal.db.model.*;
 import com.epam.reportportal.db.repository.ProductVersionRepository;
-import com.epam.reportportal.db.repository.TestCaseRepository;
-import com.epam.reportportal.db.repository.TestSuiteRepository;
 import com.epam.reportportal.dto.ProductVersionRQ;
 import com.epam.reportportal.dto.ProductVersionRS;
-import com.epam.reportportal.dto.TestCaseRQ;
-import com.epam.reportportal.dto.TestCaseRS;
 import com.epam.reportportal.exception.NotFoundException;
 import com.epam.reportportal.mapper.DtoMapper;
 import com.epam.reportportal.mapper.ProductVersionMapper;
-import com.epam.reportportal.mapper.TestCaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.stream.Collectors;
-
-import static com.epam.reportportal.service.TestSuiteServiceImpl.TEST_SUITE_NOT_FOUND_BY_ID;
 
 @Service
 public class ProductVersionServiceImpl implements ProductVersionService {
@@ -37,8 +29,8 @@ public class ProductVersionServiceImpl implements ProductVersionService {
 
     @Override
     public ProductVersionRS create(long projectID, final ProductVersionRQ inputDto) {
-//        final var testSuite = testSuiteRepository.findById(inputDto.testSuiteId())
-//                .orElseThrow(NotFoundException.supplier(TEST_SUITE_NOT_FOUND_BY_ID, inputDto.testSuiteId())); // replace by getting default Test Suite
+//        final var testSuite = testSuiteRepository.findById(inputDto.testFolderId())
+//                .orElseThrow(NotFoundException.supplier(TEST_SUITE_NOT_FOUND_BY_ID, inputDto.testFolderId())); // replace by getting default Test Suite
         final var productVersion = new ProductVersion(null,
                 inputDto.version(),
                 inputDto.documentation(),

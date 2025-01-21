@@ -10,7 +10,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,15 +18,22 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "tms_test_suite", schema = "public")
+@Table(name = "tms_test_folder", schema = "public")
 @Getter
 @Setter
 @NoArgsConstructor
-public class TestSuite implements Serializable {
-    
+public class TestFolder implements Serializable {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @GeneratedValue(
+            strategy = GenerationType.IDENTITY
+    )
+    @Column(
+            name = "id",
+            unique = true,
+            nullable = false,
+            precision = 64
+    )
     private Long id;
     
     @Column(name = "name")
@@ -40,17 +46,17 @@ public class TestSuite implements Serializable {
     @Column(name = "project_id")
     private Long projectId;
 
-    @OneToMany(mappedBy = "testSuite")
+    @OneToMany(mappedBy = "testFolder")
     private List<TestCase> testCases;
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
-    private TestSuite parent;
+    private TestFolder parent;
     
     @OneToMany(mappedBy = "parent")
-    private List<TestSuite> subTestSuites;
+    private List<TestFolder> subTestFolders;
     
-    public TestSuite(final Long projectId, final Long id, final String name, final String description) {
+    public TestFolder(final Long id, final Long projectId, final String name, final String description) {
         this.id = id;
         this.projectId = projectId;
         this.name = name;

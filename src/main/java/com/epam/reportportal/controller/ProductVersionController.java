@@ -3,11 +3,13 @@ package com.epam.reportportal.controller;
 import com.epam.reportportal.dto.ProductVersionRQ;
 import com.epam.reportportal.dto.ProductVersionRS;
 import com.epam.reportportal.service.ProductVersionService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/project/{projectId}/tms/productversion")
+@Tag(name = "Product Version", description = "Product Version API collection")
 public class ProductVersionController {
 
     private final ProductVersionService productVersionService;

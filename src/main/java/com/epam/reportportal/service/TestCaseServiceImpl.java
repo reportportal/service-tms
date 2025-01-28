@@ -51,6 +51,8 @@ public class TestCaseServiceImpl implements TestCaseService {
 
     @Override
     public TestCaseRS updateTestCase(final long testCaseId, final TestCaseRQ inputDto) {
+        final var testCase = testCaseRepository.findById(testCaseId)
+                .orElseThrow(NotFoundException.supplier(TEST_FOLDER_NOT_FOUND_BY_ID, testCaseId)); // replace by getting default Test Folder
         return null;
     }
 

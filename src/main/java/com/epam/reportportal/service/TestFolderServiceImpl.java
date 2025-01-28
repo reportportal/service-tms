@@ -16,7 +16,8 @@ import java.util.List;
 public class TestFolderServiceImpl implements TestFolderService {
     
     public static final String TEST_FOLDER_NOT_FOUND_BY_ID = "Test Folder cannot be found by id: {0}";
-    
+    public static final String TEST_CASE_NOT_FOUND_BY_ID = "Test Case cannot be found by id: {0}";
+
     private final DtoMapper<TestFolder, TestFolderRS> testFolderMapper;
     private final TestFolderRepository testFolderRepository;
     

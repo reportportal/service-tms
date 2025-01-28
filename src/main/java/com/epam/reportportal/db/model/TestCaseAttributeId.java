@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 @Getter
@@ -24,4 +25,17 @@ public class TestCaseAttributeId implements Serializable {
     private Long attributeId;
     
     //TODO: override equals and hashCode methods
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        TestCaseAttributeId that = (TestCaseAttributeId) o;
+        return Objects.equals(testCaseId, that.testCaseId) && Objects.equals(attributeId, that.attributeId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(testCaseId, attributeId);
+    }
 }

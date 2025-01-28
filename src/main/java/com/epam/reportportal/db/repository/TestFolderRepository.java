@@ -16,4 +16,12 @@ public interface TestFolderRepository extends JpaRepository<TestFolder, Long> {
      * @return found folders
      */
     List<TestFolder> findAllByProjectId(long projectID);
+
+    /**
+     * Finds a folder by given ID and project ID
+     * @param id ID of folder
+     * @param projectId ID of project
+     * @return Test Folder
+     */
+    TestFolder findByIdAndProjectId(long id, long projectId);
 }

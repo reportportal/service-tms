@@ -4,7 +4,9 @@ import com.epam.reportportal.dto.TestCaseRQ;
 import com.epam.reportportal.dto.TestCaseRS;
 import com.epam.reportportal.service.TestCaseService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -27,7 +29,7 @@ public class TestCaseController {
 
     @PostMapping
     TestCaseRS createTestCase(@PathVariable("projectId") final long projectId,
-                              @RequestBody final TestCaseRQ inputDto) {
+                              @RequestBody @Valid final TestCaseRQ inputDto) {
         return testCaseService.createTestCase(inputDto);
     }
 

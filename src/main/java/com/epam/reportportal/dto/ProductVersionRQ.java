@@ -1,7 +1,5 @@
 package com.epam.reportportal.dto;
 
-import com.epam.reportportal.db.model.Milestone;
-import com.epam.reportportal.db.model.TestPlan;
 
 import java.util.Set;
 

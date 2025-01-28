@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.epam.reportportal.service.TestFolderServiceImpl.TEST_FOLDER_NOT_FOUND_BY_ID;
 
@@ -57,10 +59,13 @@ public class TestCaseServiceImpl implements TestCaseService {
     }
 
     @Override
-    public TestCaseRS getTestCaseById(final long id) {
+    public TestCaseRS getTestCaseById(long projectId, long id) {
         return testCaseMapper.convert(testCaseRepository.findById(id)
                 .orElseThrow(NotFoundException.supplier(TEST_CASE_NOT_FOUND_BY_ID, id)));
     }
-
+    @Override
+    public List<TestCaseRS> getTestCaseByProjectId(long projectId) {
+        return testCaseRepository.findByTestFolder_ProjectId(projectId).stream().map(testCaseMapper::convert).toList();
+    }
 
 }

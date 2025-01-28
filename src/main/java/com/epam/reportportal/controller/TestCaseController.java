@@ -8,6 +8,8 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/project/{projectId}/tms/testcase")
 @Tag(name = "Test Case", description = "Test Case API collection")
@@ -23,7 +25,11 @@ public class TestCaseController {
     @GetMapping("/{testCaseId}")
     TestCaseRS getTestCaseById(@PathVariable("projectId") final long projectId,
                                @PathVariable("testCaseId") final long testCaseId) {
-        return testCaseService.getTestCaseById(testCaseId);
+        return testCaseService.getTestCaseById(projectId,testCaseId);
+    }
+    @GetMapping("/")
+    List<TestCaseRS> getTestCaseByProjectId(@PathVariable("projectId") final long projectId) {
+        return testCaseService.getTestCaseByProjectId(projectId);
     }
 
     @PostMapping
